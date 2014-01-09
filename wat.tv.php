@@ -26,7 +26,7 @@ class CFTP_Wattv {
 
 	function wattv_embed_handler( $matches, $attr, $url, $rawattr ) {
 
-		$transient = false;//get_transient( 'wattv_embed_'.$url );
+		$transient = get_transient( 'wattv_embed_'.$url );
 		$embed = $transient;
 		if ( $transient === false ) {
 			/*
