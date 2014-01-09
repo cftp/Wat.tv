@@ -21,15 +21,16 @@ class CFTP_Wattv {
 	}
 
 	public function __construct() {
-		wp_embed_register_handler( 'wattv', '#http://www.wat.tv/video/(.+)#', array( $this, 'wattv_embed_handler' ) );
+		wp_embed_register_handler( 'wattv', '#(http|https)://www.wat.tv/video/(.+)#', array( $this, 'wattv_embed_handler' ) );
 	}
 
 	function wattv_embed_handler( $matches, $attr, $url, $rawattr ) {
 
-		$transient = get_transient( 'wattv_embed_'.$url );
+		$transient = false;//get_transient( 'wattv_embed_'.$url );
 		$embed = $transient;
 		if ( $transient === false ) {
 			/*
+			Steps to retrieve the superior twitter player embed:
 			request remote page
 			create domdocument from remote page
 			If successful
@@ -37,27 +38,35 @@ class CFTP_Wattv {
 					Use tag value as iframe option
 					Return iframe with appropriate parameters
 			*/
-			$remote = wp_remote_get( 'http://www.wat.tv/video/'.$matches[1] );
-			libxml_use_internal_errors( true );
-			$dom = new DOMDocument();
-			$dom->loadHTML( $remote['body'] );
-			libxml_clear_errors();
-			$metaChildren = $dom->getElementsByTagName( 'meta' );
-			$url = '';
-			for ( $i = 0; $i < $metaChildren->length; $i++ ) {
-				$el = $metaChildren->item( $i );
-				$name = $el->getAttribute( 'name' );
-				if ( $name == 'twitter:player' ) {
-					$url = $el->getAttribute( 'content' );
+			$remote = wp_remote_get( $url );
+			if ( !is_wp_error( $remote ) ) {
+				// disable the printing of xml errors so we don't break the frontend
+				libxml_use_internal_errors( true );
+				$dom = new DOMDocument();
+				$dom->loadHTML( $remote['body'] );
+				libxml_clear_errors();
+				$metaChildren = $dom->getElementsByTagName( 'meta' );
+				$turl = '';
+				// for each meta tag found
+				for ( $i = 0; $i < $metaChildren->length; $i++ ) {
+					$el = $metaChildren->item( $i );
+					$name = $el->getAttribute( 'name' );
+					if ( $name == 'twitter:player' ) {
+						// we've found the twitter meta tag for the video player, stop looping
+						$turl = $el->getAttribute( 'content' );
+						break;
+					}
 				}
 			}
-
-			$embed = sprintf(
-				'<figure class="o-container wattv">
-					<iframe src="%1$s" frameborder="0" scrolling="no" width="650" height="450" marginwidth="0" marginheight="0" allowfullscreen></iframe>
-				</figure>',
-				esc_attr( $url )
-			);
+			$embed = $url;
+			if ( !empty( $turl ) ) {
+				$embed = sprintf(
+					'<figure class="o-container wattv">
+						<iframe src="%1$s" frameborder="0" scrolling="no" width="650" height="450" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+					</figure>',
+					esc_attr( $turl )
+				);
+			}
 			// we have a transient return/assign the results
 			set_transient( 'wattv_embed_'.$url, $embed, DAY_IN_SECONDS );
 		}
