@@ -18,6 +18,12 @@ Paste the URL of a video’s wat.tv page on a blank line by itself, save, and an
 
 (The technical bit: wat.tv has an undocumented, and relatively basic oEmbed service; but we do not use it. We collect all the data to show the video from the web page’s `<head>` metadata.)
 
+Wat.tv est une plateforme française de vidéos en ligne qui fait partie du groupe TF1.
+
+Cette extension vous permet d'intégrer une vidéo wat.tv directement dans votre article en émulant le protocole oEmbed.
+
+Copiez l'adresse de la page de la vidéo que vous voulez intégrer, et collez-la dans votre article. (Laissez l'adresse seule sur la ligne.) Et c'est tout ! Quand vous afficherez l'article sur le site, c'est le lecteur vidéo qui apparaîtra. Vous n'avez plus besoin d'utiliser le code du lecteur embarqué.
+
 == Installation ==
 1. Upload to the "/wp-content/plugins/" directory.
 1. Activate the plugin through the "Plugins" menu in WordPress.
@@ -41,7 +47,7 @@ You must paste the URL on it’s own line, and it must not be a link. The editor
 = Why is my embedded video not working? =
 wat.tv users can choose to prevent embedding of their uploaded video on other sites, due to broadcast restrictions or personal choice. In this case, you will normally see a blank or inactive player window.
 
-=Can I use the embed shortcode?=
+= Can I use the embed shortcode? =
 Yes, [embed] shortcodes will also work
 
 == Changelog ==
