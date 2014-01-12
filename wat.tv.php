@@ -62,7 +62,7 @@ class CFTP_Wattv {
 			if ( !empty( $turl ) ) {
 				$embed = sprintf(
 					'<figure class="o-container wattv">
-						<iframe src="%1$s" frameborder="0" scrolling="no" width="650" height="450" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+						<iframe src="%1$s" frameborder="0" scrolling="no" width="640" height="360" marginwidth="0" marginheight="0" allowfullscreen></iframe>
 					</figure>',
 					esc_attr( $turl )
 				);
