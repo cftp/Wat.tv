@@ -51,10 +51,18 @@ wat.tv users can choose to prevent embedding of their uploaded video on other si
 Yes, [embed] shortcodes will also work
 
 == Changelog ==
+= 1.1 =
+* Local OEmbed Provider and endpoint added.
+* Thumbnail image and title data added to endpoint
+
 = 1.0 =
 * Initial release.
 
 == Upgrade Notice ==
+= 1.1 =
+* Local OEmbed Provider and endpoint added.
+* Thumbnail image and title data added to endpoint
+
 = 1.0 =
 * Initial release.
 
