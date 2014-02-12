@@ -193,6 +193,9 @@ class WatTvOembedProvider {
 			for ( $i = 0; $i < $metaChildren->length; $i++ ) {
 				$el = $metaChildren->item( $i );
 				$name = $el->getAttribute( 'name' );
+				if (!$name) {
+					$name = $el->getAttribute('property');
+				}
 				if ( $name == 'og:image' ) {
 					// we've found the twitter meta tag for the video player, stop looping
 					$image_url = $el->getAttribute( 'content' );
