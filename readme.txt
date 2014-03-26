@@ -42,7 +42,7 @@ Yes, it handles both http and https urls.
 Don’t worry, there isn’t one. It just works.
 
 = I pasted a link but no video embed appears? =
-You must paste the URL on it’s own line, and it must not be a link. The editor will sometimes auto-link the URL, and if this happens, you must unlink the URL using the editor toolbar.
+You must paste the URL on its own line, and it must not be a link. The editor will sometimes auto-link the URL, and if this happens, you must unlink the URL using the editor toolbar.
 
 = Why is my embedded video not working? =
 wat.tv users can choose to prevent embedding of their uploaded video on other sites, due to broadcast restrictions or personal choice. In this case, you will normally see a blank or inactive player window.
@@ -50,19 +50,19 @@ wat.tv users can choose to prevent embedding of their uploaded video on other si
 = Can I use the embed shortcode? =
 Yes, [embed] shortcodes will also work
 
-== Changelog ==
-= 1.1 =
-* Local OEmbed Provider and endpoint added.
-* Thumbnail image and title data added to endpoint
-
-= 1.0 =
-* Initial release.
-
 == Upgrade Notice ==
+
+= 1.2 =
+* Add support for 'audio' URLs in addition to 'video'
+
+== Changelog ==
+
+= 1.2 =
+* Add support for 'audio' URLs in addition to 'video'
+
 = 1.1 =
-* Local OEmbed Provider and endpoint added.
+* Local oEmbed provider and endpoint added.
 * Thumbnail image and title data added to endpoint
 
 = 1.0 =
 * Initial release.
-
