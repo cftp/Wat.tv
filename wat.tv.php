@@ -3,7 +3,7 @@
 Plugin Name: CFTP Wat.tv
 Description: Wat.tv OEmbed support
 Author: Tom J Nowell, Code For The People
-Version: 1.1
+Version: 1.2
 Author URI: http://codeforthepeople.com/
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -31,7 +31,7 @@ class CFTP_Wattv {
 	}
 
 	public function add_providers() {
-		wp_oembed_add_provider( '#https?://www.wat.tv/video/(.+)#i', site_url('/?oembed=true&oembedtype=wattv&format={format}'), true );
+		wp_oembed_add_provider( '#https?://www.wat.tv/(audio|video)/(.+)#i', site_url('/?oembed=true&oembedtype=wattv&format={format}'), true );
 	}
 
 	public static function embed_code( $url ) {
