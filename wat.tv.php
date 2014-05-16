@@ -27,7 +27,7 @@ class CFTP_Wattv {
 	 * Adds the oembed providers
 	 */
 	public function __construct() {
-		$this->add_providers();
+		add_action( 'plugins_loaded', array( $this, 'add_providers' ) );
 	}
 
 	public function add_providers() {
